@@ -65,6 +65,8 @@ flowchart TD
 5. 프롬프트를 응용하기 전 `docs/05-safety-boundaries.md`와 `SECURITY.md`를 먼저 검토합니다.
 6. `prompts/`의 파일은 공개용 예시이며, 그대로 운영에 투입할 안전장치가 아닙니다.
 
+한국어 문서만 읽고 싶다면 `docs/ko/` 아래의 같은 번호 문서를 보면 됩니다.
+
 ## 저장소 구성
 
 - `docs/01-problem.md`: 장기 에이전트에서 발생하는 문제 정의
@@ -76,6 +78,7 @@ flowchart TD
 - `docs/07-evolution-loop.md`: pilot, rollback, approval gate를 통한 자기개선
 - `docs/08-identity-anchoring.md`: 기억과 운영 절차를 통한 정체성 앵커링
 - `docs/09-lessons-from-live-operation.md`: 실제 운영에서 추출한 실패 패턴 카탈로그
+- `docs/ko/`: 위 설계 문서의 한국어판
 - `prompts/ARONA_SOUL.public.md`: 공개용 헌법형 프롬프트
 - `prompts/A1-runtime-shell.public.md`: 공개용 런타임 셸 프롬프트
 - `examples/`: 기록 라우팅과 pre-flight 사례

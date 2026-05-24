@@ -3,6 +3,7 @@
 > A case study on designing a long-running companion agent under constrained memory retrieval.
 
 한국어 README: [`README.ko.md`](README.ko.md)
+한국어 문서: [`docs/ko/`](docs/ko/)
 
 This repository is not a drop-in prompt template.
 It is intentionally non-executable: a design case study for building a long-running AI companion whose continuity comes from explicit memory architecture, operational rules, and self-review loops rather than from an idealized infinite context window.
@@ -66,6 +67,8 @@ flowchart TD
 4. Read `docs/09-lessons-from-live-operation.md` to see how the patterns came from runtime failures.
 5. Review `docs/05-safety-boundaries.md` and `SECURITY.md` before adapting any prompt.
 6. Treat files in `prompts/` as public examples, not production-ready safety controls.
+
+Korean translations of the design documents are available under `docs/ko/`.
 
 ## What This Repository Contains
 
