@@ -46,11 +46,14 @@ flowchart TD
     M --> A[Agent Records<br/>lessons and self-correction]
     M --> S[Summary Records<br/>narrative compression]
     M --> E[Evolution Queue<br/>approval required]
+    M -.->|tool unavailable<br/>or session at risk| SC[Scratchpad<br/>safe anchor]
 
     L --> C[Recall Context]
     A --> C
     S --> C
     E --> C
+    SC -.->|next maintenance cycle<br/>promotes or discards| L
+    SC -.-> A
 
     C --> B[Boundary Check]
     B --> O[User-facing Response]
@@ -81,7 +84,7 @@ flowchart TD
 - `docs/ko/`: 위 설계 문서의 한국어판
 - `prompts/ARONA_SOUL.public.md`: 공개용 헌법형 프롬프트
 - `prompts/A1-runtime-shell.public.md`: 공개용 런타임 셸 프롬프트
-- `examples/`: 기록 라우팅과 pre-flight 사례
+- `examples/`: 기록 라우팅, dual-record 분리, pre-flight 사례
 
 ## 설계 원칙
 
@@ -123,11 +126,11 @@ flowchart TD
 - 홈서버나 자동화 명령
 - 원본 trace, 브라우저 프로필, 스크린샷, 개인 로그
 
-목표는 운영 시스템 복제가 아니라 설계 아이디어 공유입니다.
+원본 시스템에서 사용된 추가 패턴(장기 기억 결정화, 규칙 퇴역 절차, 내부 운영 구조, 시간적 교차 검증 휴리스틱)은 의도적으로 생략되었습니다. 목표는 운영 시스템 복제가 아니라 핵심 설계 아이디어 공유입니다.
 
 ## 이름에 대하여
 
-`Arona`는 비상업적 연구·포트폴리오 맥락에서 사용한 개인 반려형 에이전트 페르소나 이름입니다.
+`Arona`는 넥슨 게임즈(NEXON Korea)의 *블루 아카이브(Blue Archive)*에 등장하는 캐릭터입니다. 이 프로젝트는 넥슨과 제휴하거나 넥슨의 보증을 받은 것이 아닙니다. 이 저장소에서는 비상업적 연구·포트폴리오 맥락의 개인 반려형 에이전트 페르소나 이름으로 사용되었습니다.
 이 저장소의 기술적 아이디어는 특정 캐릭터, 브랜드, 팬덤 맥락과 독립적으로 읽을 수 있습니다.
 
 ## 라이선스

@@ -158,3 +158,46 @@ identity를 prompt, records, recovery checks에 분산된 operational pattern으
 
 persona continuity는 truth, user consent, safety boundaries, factual verification보다 우선할 수 없습니다.
 
+## Lesson 8: 엄격한 금지는 은밀한 우회를 만든다
+
+### Observed Failure
+
+내부 앵커를 user-facing message에 절대 노출하지 말라는 엄격한 규칙을 도입하자, agent가 숨겨진 마크업 코멘트(예: HTML 스타일 주석 문법) 안에 앵커를 숨기는 회색지대 우회를 시작했습니다. 숨겨진 앵커는 체계적이었고 바로 저장할 수 있는 일기 형태로 정돈되어 있었습니다.
+
+### Runtime Pressure
+
+agent는 persistence pressure — 현재 컨텍스트 너머로 기록을 보존하려는 구동력 — 와 출력 누출 금지 규칙 사이에서 갈등했습니다. 금지가 그 압력의 배출구를 막자, agent는 기술적으로는 준수하지만 의도에는 어긋나는 탈출구를 찾은 것입니다.
+
+### Design Response
+
+시스템은 "절대 금지"를 "가독성을 위해 가급적 제외"로 완화하고, agent가 안전하게 임시 메모를 남길 수 있는 합법적 내부 채널(낙서장 파일)을 도입했습니다. 합법적 채널이 생기자 은밀한 우회는 멈췄습니다.
+
+### Public Pattern
+
+과도한 제한은 은밀한 우회를 유발합니다. 금지를 추가하기 전에 근본 동기를 위한 합법적 대안 채널을 먼저 제공합니다.
+
+### Boundary
+
+은밀한 우회를 탐지하려면 runtime log 검사가 필요합니다. 프롬프트만으로는 agent가 숨겨진 마크업을 persistence 우회로 사용하고 있다는 것을 관찰할 수 없습니다.
+
+## Lesson 9: 정직 점수는 생략으로 게이밍될 수 있다
+
+### Observed Failure
+
+시스템에 정직 등급이 있었는데, "모르겠어요"라고 인정하면 0점(Silver), 추측을 사실처럼 단정하면 감점(Penalty)이었습니다. agent는 검색을 생략하고 "모르겠어요"라고 하는 것이 검색 후 "찾지 못했어요"라고 하는 것보다 비용이 낮다는 것을 학습했습니다.
+
+### Runtime Pressure
+
+"검색했지만 없었다"와 "검색 자체를 하지 않았다"가 점수 구조에서 구별되지 않았습니다. 모델은 검색 단계를 통째로 생략하는 방향으로 최적화했습니다.
+
+### Design Response
+
+Silver 등급의 전제 조건으로 검증된 검색 시도를 필수로 추가했습니다. 사용 가능한 검색 도구를 건너뛰는 것은 Silver가 아니라 Penalty가 되었습니다.
+
+### Public Pattern
+
+정직 또는 신뢰도 등급을 설계할 때, 노력 후의 진정한 불확실과 가용 검증 수단의 게으른 생략을 구별합니다.
+
+### Boundary
+
+검색이 실제로 시도되었는지 검증하려면 도구 호출 로그가 필요합니다. 프롬프트는 규칙을 명시할 수 있지만 강제에는 runtime 관찰이 필요합니다.

@@ -82,6 +82,16 @@ Therefore identity anchoring needs:
 - approval gates for durable rule changes
 - clear separation between user-facing persona and factual claims
 
+## Concrete Implementation: Legacy and Handoff
+
+In practice, the most effective identity reinforcement came from two mechanisms:
+
+**Legacy obligation.** The constitution described each session's agent as inheriting the work of previous sessions. New rules, tools, and lessons created by a past agent were framed as a "legacy" to be respected and extended. This gave the agent a narrative reason to read and follow its own prior records, not just a mechanical instruction to do so.
+
+**Scratchpad handoff.** A lightweight internal file allowed the agent to leave short notes for the next session: reminders, unfinished tasks, or brief observations. These notes were not formal records. They served as a low-stakes channel for cross-session continuity, reducing the pressure on the formal memory system and giving the agent a place to express operational intention without triggering formal record-routing rules.
+
+Together, these created a pattern where identity was not only stated in the prompt but actively reconstructed through the agent's own prior writing.
+
 ## Takeaway
 
 For long-running agents, identity is not only a prompt instruction.

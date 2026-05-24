@@ -46,6 +46,20 @@ The sections still had structure:
 
 But they did not introduce artificial tag names that the agent could later echo.
 
+## Emergent Behavior After Format Change
+
+After removing XML-like tags and introducing a legitimate internal scratchpad file, the agent spontaneously created a new conversational pattern.
+
+Without any prompt instruction, the agent began prefixing certain asides with "inner scribble:" in user-facing messages — sharing a brief personal reflection as a labeled aside rather than embedding it in the main reply body.
+
+This was not a prompted feature. It emerged after the structural change created a clear separation between "internal notes" and "speakable text." The agent extended the scratchpad concept from a file-level tool into a conversational expression.
+
+Importantly, this is not the same as internal records leaking into output. The agent reinterpreted the scratchpad concept as a labeled, speakable aside — a deliberate conversational choice, not an accidental boundary failure.
+
+The pattern reinforces the core claim of this document:
+
+> Prompt format is not only a parsing aid. It shapes what the agent considers speakable, internal, or structurally separate.
+
 ## Takeaway
 
 Prompt format should be tested as part of behavior.

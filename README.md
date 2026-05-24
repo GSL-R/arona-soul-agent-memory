@@ -49,11 +49,14 @@ flowchart TD
     M --> A[Agent Records<br/>lessons and self-correction]
     M --> S[Summary Records<br/>narrative compression]
     M --> E[Evolution Queue<br/>approval required]
+    M -.->|tool unavailable<br/>or session at risk| SC[Scratchpad<br/>safe anchor]
 
     L --> C[Recall Context]
     A --> C
     S --> C
     E --> C
+    SC -.->|next maintenance cycle<br/>promotes or discards| L
+    SC -.-> A
 
     C --> B[Boundary Check]
     B --> O[User-facing Response]
@@ -83,7 +86,7 @@ Korean translations of the design documents are available under `docs/ko/`.
 - `docs/09-lessons-from-live-operation.md` catalogs reusable failure patterns from live operation.
 - `prompts/ARONA_SOUL.public.md` is a sanitized constitution-style prompt.
 - `prompts/A1-runtime-shell.public.md` is a sanitized runtime shell prompt.
-- `examples/` contains small, fictional examples of routing and pre-flight behavior.
+- `examples/` contains small, fictional examples of routing, dual-record splits, and pre-flight behavior.
 
 ## Design Principles
 
@@ -124,11 +127,11 @@ This repository intentionally does not include:
 - exact home automation or server commands
 - raw traces, browser profiles, screenshots, or personal logs
 
-The goal is to share design ideas, not an operational clone.
+Additional patterns used in the original system (long-term memory crystallization, rule retirement protocols, internal planning structures, temporal verification heuristics) are intentionally omitted. The goal is to share core design ideas, not an operational clone.
 
 ## Naming Note
 
-`Arona` is used here as the name of a personal companion-agent persona in a non-commercial research and portfolio context. The technical ideas are independent of any specific character, brand, or fandom framing.
+`Arona` is a character originally from *Blue Archive* by Nexon Games / NEXON Korea. This project is not affiliated with or endorsed by Nexon. The name is used here as a personal companion-agent persona in a non-commercial research and portfolio context. The technical ideas presented in this repository are independent of any specific character, brand, or fandom framing.
 
 ## License
 
