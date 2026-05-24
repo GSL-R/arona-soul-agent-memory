@@ -7,6 +7,7 @@
 
 This repository is not a drop-in prompt template.
 It is intentionally non-executable: a design case study for building a long-running AI companion whose continuity comes from explicit memory architecture, operational rules, and self-review loops rather than from an idealized infinite context window.
+It is written for people designing LLM agents, personal AI companions, long-term memory systems, prompt-based agent operating procedures, and safety boundaries for persistent agent behavior.
 
 The original system was operated in a constrained environment:
 
