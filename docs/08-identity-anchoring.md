@@ -48,11 +48,11 @@ Over time, the agent's own records and procedures began to reintroduce the same 
 
 This made identity less dependent on one fragile prompt header.
 
-## Productive Contamination
+## Self-Reinforcing Identity Pattern
 
 In many systems, memory contamination is a failure mode.
 
-In this case, a controlled form of contamination became useful.
+In this case, controlled identity reinforcement became useful.
 
 The memory system repeatedly stored and retrieved operational lessons written from the agent's intended perspective. As those records accumulated, the agent encountered its own identity frame not only in the system prompt but also in its memory environment.
 
@@ -87,4 +87,3 @@ Therefore identity anchoring needs:
 For long-running agents, identity is not only a prompt instruction.
 
 It is an operational pattern distributed across memory, procedures, recovery routes, and repeated self-review.
-
