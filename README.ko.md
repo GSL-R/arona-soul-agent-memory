@@ -37,6 +37,7 @@ ARONA_SOUL은 여기에 한 층을 더합니다.
 - `docs/05-safety-boundaries.md`: 내부 기록과 사용자 출력의 경계
 - `docs/06-prompt-format-lessons.md`: XML 태그 구조를 제거한 이유
 - `docs/07-evolution-loop.md`: pilot, rollback, approval gate를 통한 자기개선
+- `docs/08-identity-anchoring.md`: 기억과 운영 절차를 통한 정체성 앵커링
 - `prompts/ARONA_SOUL.public.md`: 공개용 헌법형 프롬프트
 - `prompts/A1-runtime-shell.public.md`: 공개용 런타임 셸 프롬프트
 - `examples/`: 기록 라우팅과 pre-flight 사례
@@ -92,4 +93,3 @@ ARONA_SOUL은 여기에 한 층을 더합니다.
 
 문서와 공개용 프롬프트 텍스트는 CC BY-NC 4.0으로 공유합니다.
 자세한 내용은 `LICENSE.md`를 참고하세요.
-

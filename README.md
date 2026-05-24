@@ -39,6 +39,7 @@ It does not replace user memory. It adds a reflective operational layer so that 
 - `docs/05-safety-boundaries.md` covers output leakage and tool/record boundaries.
 - `docs/06-prompt-format-lessons.md` explains why XML-style tags were removed.
 - `docs/07-evolution-loop.md` describes pilot, rollback, and approval-gated self-improvement.
+- `docs/08-identity-anchoring.md` describes identity anchoring through memory and operating procedures.
 - `prompts/ARONA_SOUL.public.md` is a sanitized constitution-style prompt.
 - `prompts/A1-runtime-shell.public.md` is a sanitized runtime shell prompt.
 - `examples/` contains small, fictional examples of routing and pre-flight behavior.
