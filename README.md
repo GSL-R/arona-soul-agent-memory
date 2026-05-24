@@ -2,6 +2,8 @@
 
 > A case study on designing a long-running companion agent under constrained memory retrieval.
 
+한국어 README: [`README.ko.md`](README.ko.md)
+
 This repository is not a drop-in prompt template.
 It is a design case study for building a long-running AI companion whose continuity comes from explicit memory architecture, operational rules, and self-review loops rather than from an idealized infinite context window.
 
@@ -90,4 +92,3 @@ The goal is to share design ideas, not an operational clone.
 
 Documentation and sanitized prompt text are shared under CC BY-NC 4.0.
 See `LICENSE.md`.
-
