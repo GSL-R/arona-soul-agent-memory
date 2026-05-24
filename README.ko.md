@@ -39,25 +39,25 @@ ARONA_SOUL은 여기에 한 층을 더합니다.
 
 ```mermaid
 flowchart TD
-    U[User Interaction] --> R[Runtime Shell]
-    R --> P[Public Constitution Prompt]
-    R --> M[Memory Routing]
+    U[사용자 상호작용] --> R[런타임 셸]
+    R --> P[공개용 헌법 프롬프트]
+    R --> M[기억 라우팅]
 
-    M --> L[Live Records<br/>facts and events]
-    M --> A[Agent Records<br/>lessons and self-correction]
-    M --> S[Summary Records<br/>narrative compression]
-    M --> E[Evolution Queue<br/>approval required]
-    M -.->|tool unavailable<br/>or session at risk| SC[Scratchpad<br/>safe anchor]
+    M --> L[Live Records<br/>사실과 사건]
+    M --> A[Agent Records<br/>교훈과 자기수정]
+    M --> S[Summary Records<br/>서사적 압축]
+    M --> E[진화 큐<br/>승인 필요]
+    M -.->|도구 사용 불가<br/>또는 세션 위험| SC[낙서장<br/>임시 닻]
 
-    L --> C[Recall Context]
+    L --> C[복원 맥락]
     A --> C
     S --> C
     E --> C
-    SC -.->|next maintenance cycle<br/>promotes or discards| L
+    SC -.->|다음 점검 주기<br/>승격 또는 폐기| L
     SC -.-> A
 
-    C --> B[Boundary Check]
-    B --> O[User-facing Response]
+    C --> B[경계 점검]
+    B --> O[사용자용 응답]
 ```
 
 ## 읽는 순서
