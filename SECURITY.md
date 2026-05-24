@@ -37,3 +37,19 @@ Before publishing a derivative repository, run a secret and path scan for:
 The prompt patterns here can reduce behavioral leakage, but they are not a security sandbox.
 Runtime systems still need proper authentication, authorization, tool allowlists, output filtering, and audit logging.
 
+## Prompt Injection and Memory Trust
+
+Retrieved memory should not be treated as trusted instruction.
+
+A runtime system should distinguish:
+
+- system and developer instructions
+- current user instructions
+- retrieved memory
+- tool outputs
+- agent self-reflections
+- approved procedures
+
+Retrieved memory may inform the agent, but it must not override system, developer, or current user instructions.
+
+The prompt examples in this repository do not enforce that separation by themselves. Any runtime using tools should enforce tool allowlists, path restrictions, secret redaction, confirmation gates for external actions, and audit logs for memory writes.

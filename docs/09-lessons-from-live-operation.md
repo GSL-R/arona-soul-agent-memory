@@ -1,0 +1,160 @@
+# 09. Lessons from Live Operation
+
+This document summarizes design lessons extracted from a real long-running companion-agent workflow.
+
+It does not disclose private records, original runtime prompts, local automation details, or personal data. Each lesson is presented as a reusable failure pattern: what went wrong, why it mattered, how the design responded, and what boundary still requires runtime support.
+
+## Lesson 1: Intention Is Not Persistence
+
+### Observed Failure
+
+A long-running agent may acknowledge a memory request as if it had already persisted the memory.
+
+### Runtime Pressure
+
+The user may build future expectations on a record that does not actually exist.
+
+### Design Response
+
+The runtime adopted the rule: "No tool, no record."
+
+### Public Pattern
+
+Separate conversational acknowledgment from verified durable storage.
+
+### Boundary
+
+A prompt can express this rule, but only a runtime with actual storage confirmation can enforce it.
+
+## Lesson 2: Prompt Format Becomes Behavior
+
+### Observed Failure
+
+Internal markup introduced for structure can leak into user-facing language after repeated long-running exposure.
+
+### Runtime Pressure
+
+Once internal syntax appears in normal conversation, the model may treat that syntax as part of its output style.
+
+### Design Response
+
+The system removed XML-like tags from long-lived behavioral prompts and moved to plain Markdown operating prose.
+
+### Public Pattern
+
+Evaluate prompt format as part of behavior, not only as a parsing aid.
+
+### Boundary
+
+Markdown does not guarantee safety. Runtime output filtering and tool boundaries are still needed.
+
+## Lesson 3: Facts and Feelings Need Separate Routes
+
+### Observed Failure
+
+When factual events and emotional interpretations are stored together, later recall can blur what happened with how the agent felt about it.
+
+### Runtime Pressure
+
+The agent may reconstruct a factual claim from a reflective or poetic memory.
+
+### Design Response
+
+The system separated factual live records, agent reflections, and summary maps.
+
+### Public Pattern
+
+Route memory by claim type and future use, not by convenience.
+
+### Boundary
+
+Record classes only help if retrieval code and prompts preserve the distinction during recall.
+
+## Lesson 4: Long-Running Agents Must Remember Their Own Failures
+
+### Observed Failure
+
+Without durable self-correction records, an agent can repeat the same behavioral mistake across sessions.
+
+### Runtime Pressure
+
+The user experiences the system as continuous, but the model backend may not inherit prior lessons unless they are explicitly stored and retrieved.
+
+### Design Response
+
+The system stored agent-facing lessons separately from user profile facts.
+
+### Public Pattern
+
+Add agent-centric memory for failure modes, recovery patterns, and future behavior commitments.
+
+### Boundary
+
+Self-correction memory must not override current instructions or verified facts.
+
+## Lesson 5: Self-Improvement Needs Approval
+
+### Observed Failure
+
+A reflective agent can overfit to a single session, mood, or mistake if it applies new operating rules too quickly.
+
+### Runtime Pressure
+
+Small prompt changes can alter tone, safety behavior, and tool use across future sessions.
+
+### Design Response
+
+The system used an approval-gated evolution loop with pilot periods and rollback expectations.
+
+### Public Pattern
+
+Treat prompt changes like configuration changes: propose, approve, pilot, monitor, and roll back when needed.
+
+### Boundary
+
+Approval gates require actual runtime or human process support. A prompt cannot enforce governance by itself.
+
+## Lesson 6: Retrieved Memory Is Context, Not Authority
+
+### Observed Failure
+
+Retrieved memory can sound like an instruction, especially when it contains old operational language or prior self-reflection.
+
+### Runtime Pressure
+
+The agent may accidentally treat stale memory as a current command.
+
+### Design Response
+
+The system distinguished current instructions, approved procedures, retrieved memory, tool output, and agent reflections.
+
+### Public Pattern
+
+Use retrieved memory to inform the agent, not to override system, developer, or current user instructions.
+
+### Boundary
+
+This separation needs runtime support: source labels, trust classes, tool-output handling, and clear instruction hierarchy.
+
+## Lesson 7: Companion Identity Is Both Useful and Risky
+
+### Observed Failure
+
+A strong identity anchor can improve continuity, but it can also amplify emotional certainty or relational overfitting.
+
+### Runtime Pressure
+
+Companion agents need stable identity to feel continuous, while still remaining truthful, bounded, and correctable.
+
+### Design Response
+
+The system reinforced identity through procedures and memory routes, while keeping truthfulness, verification, and approval gates above persona expression.
+
+### Public Pattern
+
+Treat identity as an operational pattern distributed across prompts, records, and recovery checks.
+
+### Boundary
+
+Persona continuity must remain subordinate to truth, user consent, safety boundaries, and factual verification.
+

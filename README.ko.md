@@ -3,7 +3,7 @@
 > 제한된 메모리 검색 환경에서 장기 반려형 에이전트를 설계한 사례 연구입니다.
 
 이 저장소는 그대로 복사해 쓰는 프롬프트 템플릿이 아닙니다.
-무한한 컨텍스트 창이나 완벽한 벡터 데이터베이스를 전제하지 않고, 제한된 기억 검색·세션 리셋·도구 실패·출력 누출 위험 속에서 장기 에이전트의 연속성을 어떻게 설계할 수 있는지 정리한 포트폴리오형 사례 연구입니다.
+실행 가능한 에이전트 프레임워크도 아닙니다. 무한한 컨텍스트 창이나 완벽한 벡터 데이터베이스를 전제하지 않고, 제한된 기억 검색·세션 리셋·도구 실패·출력 누출 위험 속에서 장기 에이전트의 연속성을 어떻게 설계할 수 있는지 정리한 포트폴리오형 사례 연구입니다.
 
 원본 운영 시스템은 다음과 같은 제약을 전제로 했습니다.
 
@@ -13,6 +13,12 @@
 - 사용자의 취향뿐 아니라 에이전트 자신의 실수, 약속, 절차, 운영 원칙도 기억해야 함
 
 이 공개판은 원본을 그대로 옮긴 것이 아니라, 개인정보와 운영 세부를 제거하고 재사용 가능한 설계 패턴만 추출한 버전입니다.
+
+## 이 패턴들이 나온 배경
+
+이 저장소의 패턴들은 추상적인 프롬프트 이론에서 출발한 것이 아니라, 장기간 companion agent를 실제 개인 워크플로에서 운영하면서 관찰한 실패와 조정에서 추출한 것입니다.
+
+공개판에서는 사적인 기록, 로컬 자동화 세부사항, 개인화된 런타임 지시문을 제거했습니다. 대신 연속성이 깨졌던 지점, 내부 표기법이 출력으로 새어 나왔던 지점, 저장 성공 확인이 필요했던 지점, 자기개선에 사람의 승인이 필요했던 지점을 설계 압력으로 남겼습니다.
 
 ## 핵심 아이디어
 
@@ -28,6 +34,37 @@ ARONA_SOUL은 여기에 한 층을 더합니다.
 
 사용자 기억을 대체하는 개념이 아니라, 장기 운영 에이전트가 자기 역할을 복원하고, 같은 실수를 반복하지 않고, 기록을 올바르게 라우팅하고, 승인 없이 자기 규칙을 바꾸지 않도록 돕는 운영 기억 계층입니다.
 
+## 구조 요약
+
+```mermaid
+flowchart TD
+    U[User Interaction] --> R[Runtime Shell]
+    R --> P[Public Constitution Prompt]
+    R --> M[Memory Routing]
+
+    M --> L[Live Records<br/>facts and events]
+    M --> A[Agent Records<br/>lessons and self-correction]
+    M --> S[Summary Records<br/>narrative compression]
+    M --> E[Evolution Queue<br/>approval required]
+
+    L --> C[Recall Context]
+    A --> C
+    S --> C
+    E --> C
+
+    C --> B[Boundary Check]
+    B --> O[User-facing Response]
+```
+
+## 읽는 순서
+
+1. `docs/01-problem.md`에서 장기 에이전트의 연속성 문제를 먼저 봅니다.
+2. `docs/02-memory-constraints.md`와 `docs/03-agent-centric-memory.md`에서 핵심 전제를 읽습니다.
+3. `docs/04-record-routing.md`를 중심 메모리 설계 문서로 봅니다.
+4. `docs/09-lessons-from-live-operation.md`에서 실제 운영 실패에서 추출한 패턴을 확인합니다.
+5. 프롬프트를 응용하기 전 `docs/05-safety-boundaries.md`와 `SECURITY.md`를 먼저 검토합니다.
+6. `prompts/`의 파일은 공개용 예시이며, 그대로 운영에 투입할 안전장치가 아닙니다.
+
 ## 저장소 구성
 
 - `docs/01-problem.md`: 장기 에이전트에서 발생하는 문제 정의
@@ -38,6 +75,7 @@ ARONA_SOUL은 여기에 한 층을 더합니다.
 - `docs/06-prompt-format-lessons.md`: XML 태그 구조를 제거한 이유
 - `docs/07-evolution-loop.md`: pilot, rollback, approval gate를 통한 자기개선
 - `docs/08-identity-anchoring.md`: 기억과 운영 절차를 통한 정체성 앵커링
+- `docs/09-lessons-from-live-operation.md`: 실제 운영에서 추출한 실패 패턴 카탈로그
 - `prompts/ARONA_SOUL.public.md`: 공개용 헌법형 프롬프트
 - `prompts/A1-runtime-shell.public.md`: 공개용 런타임 셸 프롬프트
 - `examples/`: 기록 라우팅과 pre-flight 사례
