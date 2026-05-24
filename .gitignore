@@ -1,0 +1,32 @@
+# Local/private runtime artifacts
+.env
+.env.*
+*.local
+*.secret
+*.token
+
+# Credentials and runtime data
+.credentials/
+auth/
+settings.json
+mcp.json
+heartbeat.json
+*.db
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+browser-profile/
+traces/
+logs/
+screenshots/
+private/
+
+# Generated archives
+*.zip
+*.tar
+*.tar.gz
+
+# OS/editor
+.DS_Store
+Thumbs.db
+
