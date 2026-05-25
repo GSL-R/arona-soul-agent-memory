@@ -15,6 +15,18 @@ LLM 에이전트, 개인 AI, 반려형 AI, 장기 기억 시스템, 에이전트
 
 이 공개판은 원본을 그대로 옮긴 것이 아니라, 개인정보와 운영 세부를 제거하고 재사용 가능한 설계 패턴만 추출한 버전입니다.
 
+## 60초 요약
+
+이 프로젝트는 개인 companion agent를 운영하면서 반복적으로 겪은 기억 실패, 출력 누출, 자기수정 실패를 어떻게 설계 패턴으로 재구성했는지 기록합니다.
+
+핵심 기여는 다섯 가지입니다.
+
+1. agent 자신의 실패, 약속, 운영 규칙을 기억하는 agent-centric memory.
+2. 사실, 감정, 요약, 현재 상태, 변경 후보를 구분하는 claim type 기반 record routing.
+3. 실제 저장 도구가 성공하지 않으면 기억했다고 말하지 않는 No-tool-no-record 원칙.
+4. pilot, rollback, approval gate를 통한 자기개선 통제.
+5. durable memory가 되지 않으면서도 출력 누출을 줄이는 safe expression channel.
+
 ## 이 패턴들이 나온 배경
 
 이 저장소의 패턴들은 추상적인 프롬프트 이론에서 출발한 것이 아니라, 장기간 companion agent를 실제 개인 워크플로에서 운영하면서 관찰한 실패와 조정에서 추출한 것입니다.
@@ -69,8 +81,9 @@ flowchart TD
 2. `docs/02-memory-constraints.md`와 `docs/03-agent-centric-memory.md`에서 핵심 전제를 읽습니다.
 3. `docs/04-record-routing.md`를 중심 메모리 설계 문서로 봅니다.
 4. `docs/09-lessons-from-live-operation.md`에서 실제 운영 실패에서 추출한 패턴을 확인합니다.
-5. 프롬프트를 응용하기 전 `docs/05-safety-boundaries.md`와 `SECURITY.md`를 먼저 검토합니다.
-6. `prompts/`의 파일은 공개용 예시이며, 그대로 운영에 투입할 안전장치가 아닙니다.
+5. `docs/10-case-study-matrix.md`에서 실패 양상과 대응을 압축된 표로 확인합니다.
+6. 프롬프트를 응용하기 전 `docs/05-safety-boundaries.md`와 `SECURITY.md`를 먼저 검토합니다.
+7. `prompts/`의 파일은 공개용 예시이며, 그대로 운영에 투입할 안전장치가 아닙니다.
 
 한국어 문서만 읽고 싶다면 `docs/ko/` 아래의 같은 번호 문서를 보면 됩니다.
 
@@ -85,7 +98,9 @@ flowchart TD
 - `docs/07-evolution-loop.md`: pilot, rollback, approval gate를 통한 자기개선
 - `docs/08-identity-anchoring.md`: 기억과 운영 절차를 통한 정체성 앵커링
 - `docs/09-lessons-from-live-operation.md`: 실제 운영에서 추출한 실패 패턴 카탈로그
+- `docs/10-case-study-matrix.md`: 실패 패턴과 대응을 한눈에 보는 요약 표
 - `docs/ko/`: 위 설계 문서의 한국어판
+- `docs/templates/case-study-template.md`: 향후 사례 연구를 위한 공개 범위 점검 템플릿
 - `prompts/ARONA_SOUL.public.md`: 공개용 헌법형 프롬프트
 - `prompts/A1-runtime-shell.public.md`: 공개용 런타임 셸 프롬프트
 - `examples/`: 기록 라우팅, dual-record 분리, pre-flight 사례

@@ -18,6 +18,18 @@ The original system was operated in a constrained environment:
 
 The public files here are sanitized and simplified. They intentionally omit private diaries, credentials, local paths, automation details, and operational secrets.
 
+## In 60 Seconds
+
+This project documents how a personal companion agent was redesigned after repeated memory, leakage, and self-correction failures.
+
+It contributes five reusable patterns:
+
+1. Agent-centric memory for the agent's own failures, promises, and operating rules.
+2. Record routing by claim type: facts, feelings, summaries, current state, and proposed changes.
+3. No-tool-no-record persistence discipline.
+4. Approval-gated self-improvement with rollback and pilot periods.
+5. Safe expression channels that reduce leakage without becoming durable memory.
+
 ## Origin of These Patterns
 
 These patterns were extracted from operating a long-running companion agent in a real personal workflow.
@@ -72,8 +84,9 @@ flowchart TD
 2. Read `docs/02-memory-constraints.md` and `docs/03-agent-centric-memory.md` for the core assumptions.
 3. Use `docs/04-record-routing.md` as the central memory-design document.
 4. Read `docs/09-lessons-from-live-operation.md` to see how the patterns came from runtime failures.
-5. Review `docs/05-safety-boundaries.md` and `SECURITY.md` before adapting any prompt.
-6. Treat files in `prompts/` as public examples, not production-ready safety controls.
+5. Use `docs/10-case-study-matrix.md` as a compact map of failure modes and responses.
+6. Review `docs/05-safety-boundaries.md` and `SECURITY.md` before adapting any prompt.
+7. Treat files in `prompts/` as public examples, not production-ready safety controls.
 
 Korean translations of the design documents are available under `docs/ko/`.
 
@@ -88,6 +101,8 @@ Korean translations of the design documents are available under `docs/ko/`.
 - `docs/07-evolution-loop.md` describes pilot, rollback, and approval-gated self-improvement.
 - `docs/08-identity-anchoring.md` describes identity anchoring through memory and operating procedures.
 - `docs/09-lessons-from-live-operation.md` catalogs reusable failure patterns from live operation.
+- `docs/10-case-study-matrix.md` summarizes the failure patterns as a compact matrix.
+- `docs/templates/case-study-template.md` provides a redaction-aware template for future case studies.
 - `prompts/ARONA_SOUL.public.md` is a sanitized constitution-style prompt.
 - `prompts/A1-runtime-shell.public.md` is a sanitized runtime shell prompt.
 - `examples/` contains small, fictional examples of routing, dual-record splits, and pre-flight behavior.
