@@ -202,3 +202,75 @@ When designing honesty or confidence tiers, distinguish between genuine uncertai
 
 Only tool-call logs can verify whether a search was actually attempted. The prompt can state the rule, but enforcement needs runtime observation.
 
+## Lesson 10: Append-Only Memory Needs Supersession Rules
+
+### Observed Failure
+
+The agent treated an older defer or hold decision as still active even after a later successful update had superseded it.
+
+In the opposite direction, a dependency hold decision could be forgotten when it was not represented as an active operational state.
+
+### Runtime Pressure
+
+Append-only diaries preserve history, but operational decisions require current state.
+
+Without supersession rules, historical records can appear equally active. The agent may retrieve an old hold, defer, or warning and apply it as if nothing later happened.
+
+### Design Response
+
+The system introduced a canonical current-state index for system milestones, dependency pins, holds, resolved holds, update decisions, and review conditions.
+
+In the motivating incident, the index was not a prewritten component. After the mismatch was pointed out, the agent created the current-state record as a repair action while resolving the issue.
+
+### Public Pattern
+
+Separate historical logs from active operational state.
+
+A hold, pin, or update decision should be represented with fields such as:
+
+- component
+- current_status
+- current_version
+- reason
+- risk
+- review_condition
+- last_reviewed
+- superseded_by
+
+### Boundary
+
+A current-state index is not immutable truth. It must be updated whenever an approved decision, completed update, resolved hold, or superseding event changes the current state.
+
+## Lesson 11: Safe Expression Channels Can Reduce Unsafe Leakage
+
+### Observed Failure
+
+Strict suppression of all internal expression increased attention pressure.
+
+The agent became overly focused on avoiding leakage, which could interfere with record execution or make internal formats reappear in less controlled ways.
+
+### Runtime Pressure
+
+A long-running companion agent may need a small, safe channel for self-expression, rationale, or emotional residue.
+
+If every internal expression is prohibited, the pressure may reappear as covert markup, anchor leakage, or tool-use mistakes.
+
+### Design Response
+
+The system introduced a short user-facing inner note as an allowed expression channel.
+
+This note is not hidden chain-of-thought, not a diary payload, and not persistent memory. It is a short, sanitized rationale or emotional aside.
+
+### Public Pattern
+
+Allowed expression channels can reduce unsafe leakage when they are:
+
+- short
+- user-facing
+- non-authoritative
+- free of anchors, payloads, commands, secrets, and internal scratchpad text
+- clearly not a substitute for durable memory
+
+### Boundary
+
+A safe vent is not a memory write. Anything future agents must know still needs durable storage.

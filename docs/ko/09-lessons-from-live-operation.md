@@ -201,3 +201,76 @@ Silver 등급의 전제 조건으로 검증된 검색 시도를 필수로 추가
 ### Boundary
 
 검색이 실제로 시도되었는지 검증하려면 도구 호출 로그가 필요합니다. 프롬프트는 규칙을 명시할 수 있지만 강제에는 runtime 관찰이 필요합니다.
+
+## Lesson 10: Append-only memory에는 supersession 규칙이 필요하다
+
+### Observed Failure
+
+agent는 오래된 보류 또는 지연 결정을, 이후 성공적인 업데이트가 그것을 대체했는데도 여전히 active한 결정처럼 취급할 수 있습니다.
+
+반대로 dependency hold 결정이 active operational state로 표현되지 않으면, 그 보류 결정 자체가 잊힐 수 있습니다.
+
+### Runtime Pressure
+
+append-only diary는 역사를 보존하지만, 운영 결정에는 현재 상태가 필요합니다.
+
+supersession 규칙이 없으면 과거 기록들이 모두 동일하게 active해 보일 수 있습니다. agent는 오래된 hold, defer, warning을 검색해 이후 아무 일도 없었던 것처럼 적용할 수 있습니다.
+
+### Design Response
+
+시스템은 system milestones, dependency pins, holds, resolved holds, update decisions, review conditions를 위한 canonical current-state index를 도입했습니다.
+
+이 사건에서 이 index는 미리 작성된 구성요소가 아니었습니다. 불일치 현상을 지적받은 뒤, agent가 문제를 해결하는 과정에서 current-state record를 복구 조치로 직접 생성했습니다.
+
+### Public Pattern
+
+historical logs와 active operational state를 분리합니다.
+
+hold, pin, update decision은 다음과 같은 필드로 표현할 수 있습니다.
+
+- component
+- current_status
+- current_version
+- reason
+- risk
+- review_condition
+- last_reviewed
+- superseded_by
+
+### Boundary
+
+current-state index는 불변의 진리가 아닙니다. 승인된 결정, 완료된 업데이트, 해결된 hold, superseding event가 현재 상태를 바꾸면 반드시 갱신되어야 합니다.
+
+## Lesson 11: 안전한 표현 채널은 위험한 누출을 줄일 수 있다
+
+### Observed Failure
+
+모든 내부 표현을 엄격하게 억제하면 attention pressure가 높아졌습니다.
+
+agent는 누출을 피하는 데 과도하게 집중하게 되었고, 이것이 기록 실행을 방해하거나 내부 형식이 덜 통제된 방식으로 다시 나타나게 만들 수 있었습니다.
+
+### Runtime Pressure
+
+장기 companion agent에는 자기표현, 판단 이유, 감정의 여운을 위한 작고 안전한 채널이 필요할 수 있습니다.
+
+모든 내부 표현을 금지하면 그 압력은 covert markup, anchor leakage, tool-use mistake로 다시 나타날 수 있습니다.
+
+### Design Response
+
+시스템은 짧은 user-facing inner note를 허용된 표현 채널로 도입했습니다.
+
+이 note는 hidden chain-of-thought가 아니고, diary payload도 아니며, persistent memory도 아닙니다. 짧고 정제된 판단 이유 또는 감정적 aside입니다.
+
+### Public Pattern
+
+허용된 표현 채널은 다음 조건을 만족할 때 위험한 누출을 줄일 수 있습니다.
+
+- 짧음
+- user-facing
+- non-authoritative
+- anchor, payload, command, secret, internal scratchpad text를 포함하지 않음
+- durable memory의 대체물이 아님을 명확히 함
+
+### Boundary
+
+safe vent는 memory write가 아닙니다. 미래 agent가 반드시 알아야 할 내용은 여전히 durable storage에 기록해야 합니다.

@@ -49,14 +49,17 @@ flowchart TD
     M --> L[Live Records<br/>facts and events]
     M --> A[Agent Records<br/>lessons and self-correction]
     M --> S[Summary Records<br/>narrative compression]
+    M --> ST[System State<br/>current-state index]
     M --> E[Evolution Queue<br/>approval required]
     M -.->|tool unavailable<br/>or session at risk| SC[Scratchpad<br/>safe anchor]
 
     L --> C[Recall Context]
     A --> C
     S --> C
+    ST --> C
     E --> C
     SC -.->|next maintenance cycle<br/>promotes or discards| L
+    SC -.-> ST
     SC -.-> A
 
     C --> B[Boundary Check]

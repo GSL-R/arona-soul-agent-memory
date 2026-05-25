@@ -12,11 +12,28 @@
 | Agent records | agent의 감정, 교훈, 관계적 맥락 | 말투와 의미에는 유용하지만 사실 증거는 아님 |
 | Summary records | 하루 또는 기간 단위의 서사적 지도 | source record를 대체하지 않는 탐색 계층 |
 | Procedures | 운영 규칙과 알려진 함정 | 런타임 지침 |
+| System state | 현재 운영 상태, pin, hold, resolved hold, update decision | 유지보수되어야 하는 current-state index |
 | Evolution queue | 제안된 개선안 | 승인 전에는 active rule이 아님 |
 | Profile/observations | 사용자 선호와 안정적 사실 | 승격 기준 필요 |
 
 원본 companion runtime에서는 Agent records를 "Arona records"라고 불렀습니다.
 공개판에서는 재사용성을 위해 일반화된 용어인 "Agent records"를 사용합니다.
+
+## Memory Tiers: Ephemeral, Persistent, Durable
+
+모든 메모가 durable memory가 되어야 하는 것은 아닙니다.
+
+장기 agent는 세 가지 memory-like tier에서 도움을 받을 수 있습니다.
+
+| 계층 | 예 | 수명 | 역할 |
+| --- | --- | --- | --- |
+| Ephemeral note | 사용자에게 보이는 내면의 낙서 | 현재 대화 | 짧은 판단 이유, 감정적 aside, 압력 완화 |
+| Persistent scratchpad | 파일 기반 인수인계 메모 | 다음 점검 또는 복구 주기까지 | 임시 닻, 중단 복구, brainloop handoff |
+| Durable memory | live, agent, summary, system-state, procedure, evolution records | 장기 | 확정 기록, active state, 승인된 규칙, 재사용 가능한 교훈 |
+
+핵심 구분은 수명입니다.
+
+Ephemeral note는 투명성을 높이고 표현 압력을 줄일 수 있지만 memory write를 대체하지 않습니다. Persistent scratchpad는 중단 위험을 건너는 다리가 될 수 있지만, 결국 승격, 아카이브, 폐기 중 하나로 처리되어야 합니다. Durable memory는 미래 agent가 의존해야 하는 기록에만 사용해야 합니다.
 
 ## 검색 순서
 
@@ -40,6 +57,7 @@
 | 무엇이 일어났는가? | Live records와 source files | Agent records, summaries |
 | agent는 무엇을 배웠는가? | Agent records | Summaries, live records |
 | 현재 운영 규칙은 무엇인가? | 승인된 procedures 또는 runtime policy | Agent reflections, old summaries |
+| 현재 시스템 상태는 무엇인가? | System-state index와 검증된 update records | 오래된 live records, summaries |
 | 사용자는 무엇을 선호하는가? | 명시적 사용자 발화와 승격된 profile records | Summary inference, one-off observations |
 
 이 구분은 유용한 기억이 잘못된 종류의 증거로 사용되는 일을 막습니다.
@@ -64,4 +82,3 @@
 ## 요점
 
 기억은 단순 저장이 아닙니다. 기억은 분류, 라우팅, 그리고 나중의 해석입니다.
-

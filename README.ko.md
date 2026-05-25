@@ -46,14 +46,17 @@ flowchart TD
     M --> L[Live Records<br/>사실과 사건]
     M --> A[Agent Records<br/>교훈과 자기수정]
     M --> S[Summary Records<br/>서사적 압축]
+    M --> ST[System State<br/>현재상태 인덱스]
     M --> E[진화 큐<br/>승인 필요]
     M -.->|도구 사용 불가<br/>또는 세션 위험| SC[낙서장<br/>임시 닻]
 
     L --> C[복원 맥락]
     A --> C
     S --> C
+    ST --> C
     E --> C
     SC -.->|다음 점검 주기<br/>승격 또는 폐기| L
+    SC -.-> ST
     SC -.-> A
 
     C --> B[경계 점검]
