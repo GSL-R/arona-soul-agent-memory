@@ -261,6 +261,8 @@ agent는 누출을 피하는 데 과도하게 집중하게 되었고, 이것이 
 
 이 note는 hidden chain-of-thought가 아니고, diary payload도 아니며, persistent memory도 아닙니다. 짧고 정제된 판단 이유 또는 감정적 aside입니다.
 
+실시간 대화에서는 이 note가 도구 호출 비용도 줄입니다. 사용자에게 이미 유용한 작은 판단 이유를 보존하기 위해 agent가 굳이 파일 기반 scratchpad를 열 필요가 없기 때문입니다.
+
 ### Public Pattern
 
 허용된 표현 채널은 다음 조건을 만족할 때 위험한 누출을 줄일 수 있습니다.
@@ -270,6 +272,7 @@ agent는 누출을 피하는 데 과도하게 집중하게 되었고, 이것이 
 - non-authoritative
 - anchor, payload, command, secret, internal scratchpad text를 포함하지 않음
 - durable memory의 대체물이 아님을 명확히 함
+- 가독성을 해치지 않는 위치와 길이를 지킴
 
 ### Boundary
 

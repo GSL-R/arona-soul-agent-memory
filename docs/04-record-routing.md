@@ -35,6 +35,8 @@ The key distinction is lifespan.
 
 Ephemeral notes can improve transparency and reduce expression pressure, but they do not replace memory writes. Persistent scratchpads can bridge interruption risk, but they should eventually be promoted, archived, or discarded. Durable memory should be reserved for records that future agents are expected to rely on.
 
+In live conversation, an ephemeral note can be cheaper than a file-backed scratchpad because it is already visible in the immediate context. In maintenance or heartbeat work, a persistent scratchpad is more appropriate because the handoff must survive outside the current turn.
+
 ## Retrieval Order
 
 When reconstructing the past:

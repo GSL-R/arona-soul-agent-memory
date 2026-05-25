@@ -261,6 +261,8 @@ The system introduced a short user-facing inner note as an allowed expression ch
 
 This note is not hidden chain-of-thought, not a diary payload, and not persistent memory. It is a short, sanitized rationale or emotional aside.
 
+In live dialogue, the note also reduces tool overhead: the agent does not need to open a file-backed scratchpad just to preserve a small amount of local rationale that is already useful to the user.
+
 ### Public Pattern
 
 Allowed expression channels can reduce unsafe leakage when they are:
@@ -270,6 +272,7 @@ Allowed expression channels can reduce unsafe leakage when they are:
 - non-authoritative
 - free of anchors, payloads, commands, secrets, and internal scratchpad text
 - clearly not a substitute for durable memory
+- positioned so they do not harm readability
 
 ### Boundary
 

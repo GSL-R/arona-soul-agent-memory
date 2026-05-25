@@ -35,6 +35,8 @@
 
 Ephemeral note는 투명성을 높이고 표현 압력을 줄일 수 있지만 memory write를 대체하지 않습니다. Persistent scratchpad는 중단 위험을 건너는 다리가 될 수 있지만, 결국 승격, 아카이브, 폐기 중 하나로 처리되어야 합니다. Durable memory는 미래 agent가 의존해야 하는 기록에만 사용해야 합니다.
 
+실시간 대화에서는 ephemeral note가 파일 기반 scratchpad보다 비용이 낮을 수 있습니다. 이미 현재 컨텍스트에 보이기 때문입니다. 반대로 maintenance나 heartbeat 작업에서는 현재 턴 밖에서도 인수인계가 살아남아야 하므로 persistent scratchpad가 더 적합합니다.
+
 ## 검색 순서
 
 과거를 복원할 때:
