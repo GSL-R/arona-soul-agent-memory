@@ -28,7 +28,7 @@ It contributes five reusable patterns:
 2. Record routing by claim type: facts, feelings, summaries, current state, and proposed changes.
 3. No-tool-no-record persistence discipline.
 4. Approval-gated self-improvement with rollback and pilot periods.
-5. Safe expression channels that reduce leakage without becoming durable memory.
+5. Bounded, non-authoritative expression channels that reduce leakage without becoming durable memory.
 
 ## Origin of These Patterns
 
@@ -83,8 +83,8 @@ flowchart TD
 1. Start with `docs/01-problem.md` to understand the continuity problem.
 2. Read `docs/02-memory-constraints.md` and `docs/03-agent-centric-memory.md` for the core assumptions.
 3. Use `docs/04-record-routing.md` as the central memory-design document.
-4. Read `docs/09-lessons-from-live-operation.md` to see how the patterns came from runtime failures.
-5. Use `docs/10-case-study-matrix.md` as a compact map of failure modes and responses.
+4. Skim `docs/10-case-study-matrix.md` as a compact map of failure modes and responses.
+5. Read `docs/09-lessons-from-live-operation.md` to see the detailed runtime lessons behind the matrix.
 6. Review `docs/05-safety-boundaries.md` and `SECURITY.md` before adapting any prompt.
 7. Treat files in `prompts/` as public examples, not production-ready safety controls.
 

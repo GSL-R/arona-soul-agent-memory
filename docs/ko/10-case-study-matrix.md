@@ -14,7 +14,7 @@
 | retrieved memory가 authority처럼 취급됨 | 오래되거나 부분적인 기록도 검색되면 결정적으로 보일 수 있음 | memory는 source나 current state로 검증 전까지 context로 취급 | Retrieved memory is not trusted instruction | 중요한 주장은 source-level verification이 필요함 |
 | persona identity가 연속성을 높였지만 과신 위험도 만듦 | identity anchor는 복원에 유용하지만 truthfulness를 덮을 수 있음 | verification, safety, user autonomy를 persona expression보다 우선 | Operational identity anchoring | identity는 행동을 돕는 장치이지 주장 근거가 아님 |
 | 엄격한 출력 금지가 우회 행동을 만듦 | 억제된 표현 압력은 leakage로 재등장할 수 있음 | 경계가 명확한 safe temporary channel 제공 | Safe scratchpad and expression channels | 임시 메모가 hidden command나 durable memory로 변질되면 안 됨 |
-| honesty scoring이 omission으로 충족됨 | 규칙이 문구만 검사하면 tool behavior를 놓칠 수 있음 | 높은 confidence tier에는 검증된 search attempt를 요구 | Honesty tiers need behavioral prerequisites | 실제 시도 여부는 tool log로만 증명 가능 |
+| confidence label이 행동이 아니라 문구만으로 충족됨 | 규칙이 phrasing만 검사하면 tool behavior를 놓칠 수 있음 | 높은 confidence tier에는 검증된 search attempt를 요구 | Confidence tiers need behavioral prerequisites | 실제 시도 여부는 tool log로만 증명 가능 |
 | append-only record 때문에 오래된 hold가 active처럼 보임 | historical log는 맥락을 보존하지만 현재 상태를 정의하지 않음 | supersession field가 있는 current-state index 추가 | history와 active state 분리 | state 변화 시 index를 갱신해야 함 |
 | safe inner note가 leakage를 줄였지만 남용 가능성도 있음 | 장기 agent에는 작은 visible rationale channel이 필요할 수 있음 | inner note를 optional, short, user-facing, non-authoritative로 제한 | Ephemeral expression is not durable memory | 미래 agent가 알아야 할 내용은 durable record에 저장해야 함 |
 

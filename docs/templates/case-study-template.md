@@ -4,6 +4,8 @@ Use this template to convert a private operation episode into a public-safe desi
 
 Do not paste raw private prompts, diaries, local paths, automation commands, user profile records, credentials, or hidden runtime payloads into this file.
 
+If exact wording seems important, paraphrase it and mark it as a paraphrase instead of quoting the private source directly.
+
 ## Context
 
 Describe the operational setting at a high level.
@@ -63,6 +65,7 @@ Examples:
 ## Review Checklist
 
 - [ ] No raw private prompt text is included.
+- [ ] Private-source wording has been paraphrased instead of quoted directly.
 - [ ] No local paths, commands, credentials, or tool payloads are included.
 - [ ] Personal context has been removed or generalized.
 - [ ] Single-episode observations are phrased as observed patterns, not universal rules.

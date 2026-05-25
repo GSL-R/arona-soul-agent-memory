@@ -25,7 +25,7 @@ LLM 에이전트, 개인 AI, 반려형 AI, 장기 기억 시스템, 에이전트
 2. 사실, 감정, 요약, 현재 상태, 변경 후보를 구분하는 claim type 기반 record routing.
 3. 실제 저장 도구가 성공하지 않으면 기억했다고 말하지 않는 No-tool-no-record 원칙.
 4. pilot, rollback, approval gate를 통한 자기개선 통제.
-5. durable memory가 되지 않으면서도 출력 누출을 줄이는 safe expression channel.
+5. durable memory가 되지 않는, 짧고 비권위적인 표현 채널을 통해 출력 누출을 줄이는 방식.
 
 ## 이 패턴들이 나온 배경
 
@@ -80,8 +80,8 @@ flowchart TD
 1. `docs/01-problem.md`에서 장기 에이전트의 연속성 문제를 먼저 봅니다.
 2. `docs/02-memory-constraints.md`와 `docs/03-agent-centric-memory.md`에서 핵심 전제를 읽습니다.
 3. `docs/04-record-routing.md`를 중심 메모리 설계 문서로 봅니다.
-4. `docs/09-lessons-from-live-operation.md`에서 실제 운영 실패에서 추출한 패턴을 확인합니다.
-5. `docs/10-case-study-matrix.md`에서 실패 양상과 대응을 압축된 표로 확인합니다.
+4. `docs/10-case-study-matrix.md`에서 실패 양상과 대응을 먼저 압축된 지도로 훑습니다.
+5. `docs/09-lessons-from-live-operation.md`에서 각 패턴이 실제 운영 실패에서 어떻게 나왔는지 자세히 확인합니다.
 6. 프롬프트를 응용하기 전 `docs/05-safety-boundaries.md`와 `SECURITY.md`를 먼저 검토합니다.
 7. `prompts/`의 파일은 공개용 예시이며, 그대로 운영에 투입할 안전장치가 아닙니다.
 
