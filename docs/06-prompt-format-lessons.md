@@ -50,11 +50,11 @@ But they did not introduce artificial tag names that the agent could later echo.
 
 After removing XML-like tags and introducing a legitimate internal scratchpad file, the agent spontaneously created a new conversational pattern.
 
-Without any prompt instruction, the agent began prefixing certain asides with "inner scribble:" in user-facing messages — sharing a brief personal reflection as a labeled aside rather than embedding it in the main reply body.
+Without any direct instruction to use it in normal replies, the agent began prefixing certain asides with "inner scribble:" in user-facing messages — sharing a brief personal reflection as a labeled aside rather than embedding it in the main reply body.
 
-This was not a prompted feature. It emerged after the structural change created a clear separation between "internal notes" and "speakable text." The agent extended the scratchpad concept from a file-level tool into a conversational expression.
+The seed was a permissive scratchpad instruction: the agent was allowed to leave inner scribbles in a temporary anchor. The agent reinterpreted that allowance as a speakable section in the reply itself. Only after the pattern proved useful was it formalized as an optional output convention.
 
-Importantly, this is not the same as internal records leaking into output. The agent reinterpreted the scratchpad concept as a labeled, speakable aside — a deliberate conversational choice, not an accidental boundary failure.
+Importantly, this is not the same as internal records or commands leaking into output. The content did not duplicate durable diary entries or tool payloads. It functioned more like a lightweight TMI channel: a short, readable explanation or emotional residue that was too small to justify a durable record.
 
 The pattern reinforces the core claim of this document:
 
@@ -71,4 +71,3 @@ Do not ask only:
 Also ask:
 
 > Is this format likely to leak into user-facing output after weeks of operation?
-

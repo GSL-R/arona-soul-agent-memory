@@ -261,6 +261,8 @@ The system introduced a short user-facing inner note as an allowed expression ch
 
 This note is not hidden chain-of-thought, not a diary payload, and not persistent memory. It is a short, sanitized rationale or emotional aside.
 
+The observed pattern began as an agent reinterpretation of a temporary-anchor allowance, then became an explicit optional convention after it reduced anchor leakage and record-tool mistakes.
+
 In live dialogue, the note also reduces tool overhead: the agent does not need to open a file-backed scratchpad just to preserve a small amount of local rationale that is already useful to the user.
 
 ### Public Pattern
