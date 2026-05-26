@@ -77,18 +77,20 @@ flowchart TD
 
 ## 읽는 순서
 
-1. `docs/01-problem.md`에서 장기 에이전트의 연속성 문제를 먼저 봅니다.
-2. `docs/02-memory-constraints.md`와 `docs/03-agent-centric-memory.md`에서 핵심 전제를 읽습니다.
-3. `docs/04-record-routing.md`를 중심 메모리 설계 문서로 봅니다.
-4. `docs/10-case-study-matrix.md`에서 실패 양상과 대응을 먼저 압축된 지도로 훑습니다.
-5. `docs/09-lessons-from-live-operation.md`에서 각 패턴이 실제 운영 실패에서 어떻게 나왔는지 자세히 확인합니다.
-6. 프롬프트를 응용하기 전 `docs/05-safety-boundaries.md`와 `SECURITY.md`를 먼저 검토합니다.
-7. `prompts/`의 파일은 공개용 예시이며, 그대로 운영에 투입할 안전장치가 아닙니다.
+1. `docs/00-origin-and-scope.md`에서 이 저장소가 raw prompt 공개가 아니라 fieldbook인 이유를 먼저 봅니다.
+2. `docs/01-problem.md`에서 장기 에이전트의 연속성 문제를 봅니다.
+3. `docs/02-memory-constraints.md`와 `docs/03-agent-centric-memory.md`에서 핵심 전제를 읽습니다.
+4. `docs/04-record-routing.md`를 중심 메모리 설계 문서로 봅니다.
+5. `docs/10-case-study-matrix.md`에서 실패 양상과 대응을 먼저 압축된 지도로 훑습니다.
+6. `docs/09-lessons-from-live-operation.md`에서 각 패턴이 실제 운영 실패에서 어떻게 나왔는지 자세히 확인합니다.
+7. 프롬프트를 응용하기 전 `docs/05-safety-boundaries.md`와 `SECURITY.md`를 먼저 검토합니다.
+8. `prompts/`의 파일은 공개용 예시이며, 그대로 운영에 투입할 안전장치가 아닙니다.
 
 한국어 문서만 읽고 싶다면 `docs/ko/` 아래의 같은 번호 문서를 보면 됩니다.
 
 ## 저장소 구성
 
+- `docs/00-origin-and-scope.md`: 이 저장소가 raw prompt 공개가 아니라 공개용 fieldbook인 이유
 - `docs/01-problem.md`: 장기 에이전트에서 발생하는 문제 정의
 - `docs/02-memory-constraints.md`: 제한된 검색 환경이라는 전제
 - `docs/03-agent-centric-memory.md`: 에이전트 중심 기억 패턴

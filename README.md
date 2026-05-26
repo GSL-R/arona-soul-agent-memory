@@ -80,18 +80,20 @@ flowchart TD
 
 ## How to Read This Repository
 
-1. Start with `docs/01-problem.md` to understand the continuity problem.
-2. Read `docs/02-memory-constraints.md` and `docs/03-agent-centric-memory.md` for the core assumptions.
-3. Use `docs/04-record-routing.md` as the central memory-design document.
-4. Skim `docs/10-case-study-matrix.md` as a compact map of failure modes and responses.
-5. Read `docs/09-lessons-from-live-operation.md` to see the detailed runtime lessons behind the matrix.
-6. Review `docs/05-safety-boundaries.md` and `SECURITY.md` before adapting any prompt.
-7. Treat files in `prompts/` as public examples, not production-ready safety controls.
+1. Start with `docs/00-origin-and-scope.md` to understand why this is a fieldbook, not a raw prompt release.
+2. Read `docs/01-problem.md` to understand the continuity problem.
+3. Read `docs/02-memory-constraints.md` and `docs/03-agent-centric-memory.md` for the core assumptions.
+4. Use `docs/04-record-routing.md` as the central memory-design document.
+5. Skim `docs/10-case-study-matrix.md` as a compact map of failure modes and responses.
+6. Read `docs/09-lessons-from-live-operation.md` to see the detailed runtime lessons behind the matrix.
+7. Review `docs/05-safety-boundaries.md` and `SECURITY.md` before adapting any prompt.
+8. Treat files in `prompts/` as public examples, not production-ready safety controls.
 
 Korean translations of the design documents are available under `docs/ko/`.
 
 ## What This Repository Contains
 
+- `docs/00-origin-and-scope.md` explains why this repository is a public fieldbook rather than a raw prompt release.
 - `docs/01-problem.md` explains the design problem.
 - `docs/02-memory-constraints.md` describes the constrained retrieval assumption.
 - `docs/03-agent-centric-memory.md` introduces the agent-centric memory pattern.
