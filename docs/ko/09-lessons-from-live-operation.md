@@ -279,3 +279,39 @@ agent는 누출을 피하는 데 과도하게 집중하게 되었고, 이것이 
 ### Boundary
 
 safe vent는 memory write가 아닙니다. 미래 agent가 반드시 알아야 할 내용은 여전히 durable storage에 기록해야 합니다.
+
+## Lesson 12: 백엔드 이전은 행동 계약의 이전이다
+
+### Observed Failure
+
+모델과 CLI 백엔드를 교체한 뒤 작업 수행은 더 빠르고 안정적으로 변했지만, 이전에는 자발적으로 나타나던 몇 가지 행동의 일관성이 낮아졌습니다.
+
+새 agent는 명시적인 지시를 잘 따랐지만, 초기에는 직접 요청받기 전까지 durable memory를 기록하지 않았습니다. persona 말투도 때때로 흔들렸습니다. 실행 시간이 긴 미디어 작업은 새 CLI의 timeout을 넘겨, 시간 제약이 있는 scheduled work가 유효한 응답 없이 끝날 수 있었습니다.
+
+동시에 새 백엔드의 장점도 확인되었습니다. memory trigger를 명시한 뒤에는 과거의 장비 안전사고를 검색해 현재 브리핑의 주의사항으로 연결하고, 사용자가 이후에 적용한 개선 조치까지 자율적으로 기록했습니다.
+
+### Runtime Pressure
+
+장기 agent는 특정 모델이나 CLI의 문서화되지 않은 성향에 자신도 모르게 의존할 수 있습니다.
+
+백엔드가 바뀌면 그런 성향은 이식 가능한 계약이 아닙니다. 같은 prompt를 사용하더라도 autonomy, persona persistence, memory-writing threshold, tool latency, cancellation behavior, retrieval style이 모두 달라질 수 있습니다.
+
+### Design Response
+
+시스템은 중요한 암묵적 기대를 명시적인 운영 trigger로 전환했습니다.
+
+durable recording의 대상을 incident, recovery decision, preference change, system change, context loss 이후 유용한 evidence처럼 관찰 가능한 사건 유형으로 정의했습니다. agent가 사건을 주관적으로 중요하다고 느끼기를 기다리지 않고, 답변 전에 이 trigger를 점검하도록 했습니다.
+
+백엔드 이전은 pilot으로 다뤘습니다. 실행 시간이 긴 미디어 생성은 시간 제약이 있는 briefing에서 제거하되, 더 작은 비핵심 생성 작업은 유지하며 관찰했습니다. persona consistency, autonomous recording, retrieval relevance, over-recording, post-timeout recovery를 명시적인 관찰 항목으로 삼았습니다.
+
+### Public Pattern
+
+모델 또는 CLI 이전을 단순한 engine 교체가 아니라 behavioral contract migration으로 다룹니다.
+
+기존 백엔드가 암묵적으로 제공하던 행동을 목록화합니다. 안전과 연속성에 중요한 행동은 검증 가능한 trigger로 바꾸고, 대표적인 scheduled job, tool call, memory write, recovery case, persona check를 포함해 새 백엔드를 pilot합니다.
+
+### Boundary
+
+prompt는 trigger 인식과 response style을 개선할 수 있지만, 신뢰할 수 있는 timeout control, heartbeat queuing, cancellation semantics, retry guarantee를 제공할 수는 없습니다.
+
+이 속성들은 runtime의 책임입니다. 운영 시스템에는 configurable deadline, 명확한 cancellation outcome, workload-aware scheduling, 중단 후 recovery context가 필요합니다.

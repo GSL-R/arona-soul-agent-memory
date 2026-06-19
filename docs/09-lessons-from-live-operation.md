@@ -279,3 +279,39 @@ Allowed expression channels can reduce unsafe leakage when they are:
 ### Boundary
 
 A safe vent is not a memory write. Anything future agents must know still needs durable storage.
+
+## Lesson 12: A Backend Migration Is a Behavioral Contract Migration
+
+### Observed Failure
+
+After a model and CLI backend change, task execution became faster and more reliable, but several behaviors that had previously appeared spontaneous became less consistent.
+
+The new agent followed explicit instructions well, yet initially waited for a direct request before writing durable memories. Persona style also became less stable at times. Long-running media tasks could exceed the new CLI's timeout, causing deadline-sensitive scheduled work to end without a usable response.
+
+At the same time, the new backend showed a useful strength: once memory triggers were made explicit, it retrieved an older equipment-safety incident, applied that history to a current briefing, and autonomously recorded the user's subsequent mitigation.
+
+### Runtime Pressure
+
+A long-running agent can accidentally depend on undocumented tendencies of a particular model or CLI.
+
+When the backend changes, those tendencies do not form a portable contract. Autonomy, persona persistence, memory-writing thresholds, tool latency, cancellation behavior, and retrieval style may all change even when the same prompt is reused.
+
+### Design Response
+
+The system converted critical implicit expectations into explicit operating triggers.
+
+Durable recording was defined by observable event classes, such as incidents, recovery decisions, preference changes, system changes, and evidence useful after context loss. The agent was instructed to evaluate these triggers before answering instead of waiting for a subjective feeling that an event was important.
+
+The migration was treated as a pilot. Long media generation was removed from deadline-sensitive briefings, while smaller noncritical generation jobs remained enabled and monitored. Persona consistency, autonomous recording, retrieval relevance, over-recording, and post-timeout recovery became explicit observation targets.
+
+### Public Pattern
+
+Treat a model or CLI migration as a behavioral contract migration, not a drop-in engine replacement.
+
+Inventory the behaviors the previous backend supplied implicitly. Convert safety- and continuity-critical behaviors into testable triggers, then pilot the new backend with representative scheduled jobs, tool calls, memory writes, recovery cases, and persona checks.
+
+### Boundary
+
+Prompts can improve trigger recognition and response style, but they cannot provide reliable timeout control, heartbeat queuing, cancellation semantics, or retry guarantees.
+
+Those properties belong to the runtime. A production system needs configurable deadlines, clear cancellation outcomes, workload-aware scheduling, and recovery context when a task is interrupted.

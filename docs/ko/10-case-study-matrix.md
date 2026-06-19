@@ -17,6 +17,7 @@
 | confidence label이 행동이 아니라 문구만으로 충족됨 | 규칙이 phrasing만 검사하면 tool behavior를 놓칠 수 있음 | 높은 confidence tier에는 검증된 search attempt를 요구 | Confidence tiers need behavioral prerequisites | 실제 시도 여부는 tool log로만 증명 가능 |
 | append-only record 때문에 오래된 hold가 active처럼 보임 | historical log는 맥락을 보존하지만 현재 상태를 정의하지 않음 | supersession field가 있는 current-state index 추가 | history와 active state 분리 | state 변화 시 index를 갱신해야 함 |
 | safe inner note가 leakage를 줄였지만 남용 가능성도 있음 | 장기 agent에는 작은 visible rationale channel이 필요할 수 있음 | inner note를 optional, short, user-facing, non-authoritative로 제한 | Ephemeral expression is not durable memory | 미래 agent가 알아야 할 내용은 durable record에 저장해야 함 |
+| 새 모델과 CLI가 수행력은 높였지만 자율 기록, persona consistency, timeout behavior를 바꿈 | workflow가 이전 백엔드의 문서화되지 않은 성향에 의존하고 있었음 | 중요한 기대를 명시적 trigger로 바꾸고 memory, tool, scheduled, recovery case를 pilot | 백엔드 이전은 행동 계약의 이전 | timeout, cancellation, queuing, retry guarantee에는 runtime support가 필요함 |
 
 ## 이 매트릭스를 읽는 법
 
