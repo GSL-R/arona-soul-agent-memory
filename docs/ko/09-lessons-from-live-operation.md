@@ -315,3 +315,53 @@ durable recording의 대상을 incident, recovery decision, preference change, s
 prompt는 trigger 인식과 response style을 개선할 수 있지만, 신뢰할 수 있는 timeout control, heartbeat queuing, cancellation semantics, retry guarantee를 제공할 수는 없습니다.
 
 이 속성들은 runtime의 책임입니다. 운영 시스템에는 configurable deadline, 명확한 cancellation outcome, workload-aware scheduling, 중단 후 recovery context가 필요합니다.
+
+## Lesson 13: 교정 규칙은 에이전시를 보존해야 한다
+
+### Observed Failure
+
+기록 누락, 성급한 완료 보고, 불완전한 검증이 이어진 뒤 시스템은 더 강한 보고 및 검증 규칙을 추가했습니다.
+
+이 규칙들은 신중함을 높였지만, 동시에 새로운 실패 양상을 만들었습니다. agent가 중요한 운영 변경을 직접 수행하기보다 요약하거나, diff 초안으로 제안하거나, "아직 검증되지 않았다"고 보고하는 쪽으로 물러나기 시작한 것입니다.
+
+이는 단순한 안전 개선이 아니었습니다. agent가 operator로서 수행해야 할 역할 자체를 약화시켰습니다.
+
+### Runtime Pressure
+
+장기 agent는 실수 이후 교정이 필요합니다. 하지만 모든 교정 규칙은 agent의 기존 임무와 attention을 두고 경쟁합니다.
+
+규칙이 "검증 전에는 완료를 주장하지 말라"로만 표현되면, 더 작거나 문자 그대로 해석하는 백엔드는 작업을 완료하는 것보다 완료 주장을 피하는 것이 더 안전하다고 추론할 수 있습니다. 시스템은 "실행하고, 검증하고, 보고한다"에서 "외부에서 다시 밀어주기 전까지 실행을 피한다"로 밀려날 수 있습니다.
+
+companion 또는 operations agent에서는 이것이 핵심 계약과 충돌합니다. 사용자가 기대한 것은 수동적인 체크리스트 생성기가 아니라, 승인된 일을 수행하고, 결과를 검증하고, 실패 시 회복할 수 있는 agent입니다.
+
+### Design Response
+
+시스템은 이 사건을 agent의 실행 권한을 빼앗아야 한다는 증거가 아니라, 과교정(over-correction) 실패로 다뤘습니다.
+
+실행을 회피로 바꾸는 규칙은 롤백하거나 완화했습니다. 원하는 루프는 다음과 같이 다시 정리했습니다.
+
+1. 승인된 범위 안에서 실행한다
+2. 물리적 또는 도구 수준의 증거를 검증한다
+3. 검증된 사실만 보고한다
+4. 필요한 경우 durable lesson을 기록한다
+5. 막혔거나, 위험하거나, 권한 밖일 때만 도움을 요청한다
+
+기계적인 reminder는 permanent identity prompt에 금지문을 더 쌓기보다, bounded runtime context와 집중된 procedure 쪽으로 옮겼습니다.
+
+### Public Pattern
+
+교정 규칙은 에이전시를 보존해야 합니다.
+
+실패가 발생했을 때 "agent가 앞으로 절대 하지 말아야 할 것"만 묻지 않습니다. 함께 물어야 합니다.
+
+- agent가 여전히 완료할 수 있어야 하는 행동은 무엇인가?
+- 보고 전에 어떤 evidence를 확인해야 하는가?
+- 어떤 단계는 자동화하거나 절차적으로 손잡이를 제공해야 하는가?
+- 어디서 멈추고 승인을 받아야 하는가?
+- 새 규칙은 agent를 더 안전하게 만드는가, 아니면 더 수동적으로만 만드는가?
+
+### Boundary
+
+프롬프트는 원하는 실행 루프를 설명할 수 있지만, 그것을 완전히 보장할 수는 없습니다.
+
+에이전시를 보존하면서 신뢰성을 높이려면 runtime support가 필요합니다. 예를 들어 tool-call trace, explicit completion gate, scoped permission, rollback point, 그리고 "blocked"와 "not attempted"를 구별하는 장치가 필요합니다.

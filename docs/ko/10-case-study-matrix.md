@@ -18,6 +18,7 @@
 | append-only record 때문에 오래된 hold가 active처럼 보임 | historical log는 맥락을 보존하지만 현재 상태를 정의하지 않음 | supersession field가 있는 current-state index 추가 | history와 active state 분리 | state 변화 시 index를 갱신해야 함 |
 | safe inner note가 leakage를 줄였지만 남용 가능성도 있음 | 장기 agent에는 작은 visible rationale channel이 필요할 수 있음 | inner note를 optional, short, user-facing, non-authoritative로 제한 | Ephemeral expression is not durable memory | 미래 agent가 알아야 할 내용은 durable record에 저장해야 함 |
 | 새 모델과 CLI가 수행력은 높였지만 자율 기록, persona consistency, timeout behavior를 바꿈 | workflow가 이전 백엔드의 문서화되지 않은 성향에 의존하고 있었음 | 중요한 기대를 명시적 trigger로 바꾸고 memory, tool, scheduled, recovery case를 pilot | 백엔드 이전은 행동 계약의 이전 | timeout, cancellation, queuing, retry guarantee에는 runtime support가 필요함 |
+| 교정 규칙이 agent를 신중하게 만들었지만 실행 의지는 약화시킴 | 신뢰성 보강은 agent의 operator 역할과 attention을 두고 경쟁할 수 있음 | 실행을 회피로 바꾸는 규칙을 롤백하거나 완화하고, 실행-검증-보고-기록-막힐 때 질문 루프를 재정의 | 교정 규칙은 에이전시를 보존해야 함 | blocked work와 unattempted work를 구별하려면 runtime evidence와 scoped completion gate가 필요함 |
 
 ## 이 매트릭스를 읽는 법
 

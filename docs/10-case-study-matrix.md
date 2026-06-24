@@ -18,6 +18,7 @@ It is not a benchmark or proof that these patterns generalize to every agent. It
 | Append-only records made old holds look active. | Historical logs preserve context but do not define current state. | Add a current-state index with supersession fields. | Separate history from active state. | The index must be maintained when state changes. |
 | Safe inner notes reduced leakage but could be overused. | A long-running agent may need a small visible rationale channel. | Make inner notes optional, short, user-facing, and non-authoritative. | Ephemeral expression is not durable memory. | Anything future agents need must still be stored in durable records. |
 | A new model and CLI improved execution but changed autonomous recording, persona consistency, and timeout behavior. | The workflow had relied on undocumented tendencies of the previous backend. | Convert critical expectations into explicit triggers and pilot representative memory, tool, scheduled, and recovery cases. | A backend migration is a behavioral contract migration. | Timeout, cancellation, queuing, and retry guarantees require runtime support. |
+| Corrective rules made the agent more cautious but less willing to act. | Reliability fixes can compete with the agent's operator role. | Roll back or soften rules that turn execution into avoidance; restate act, verify, report, record, and ask-when-blocked as the loop. | Correction rules should preserve agency. | Runtime evidence and scoped completion gates are needed to distinguish blocked work from unattempted work. |
 
 ## How to Use This Matrix
 

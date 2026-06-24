@@ -315,3 +315,53 @@ Inventory the behaviors the previous backend supplied implicitly. Convert safety
 Prompts can improve trigger recognition and response style, but they cannot provide reliable timeout control, heartbeat queuing, cancellation semantics, or retry guarantees.
 
 Those properties belong to the runtime. A production system needs configurable deadlines, clear cancellation outcomes, workload-aware scheduling, and recovery context when a task is interrupted.
+
+## Lesson 13: Corrective Rules Must Preserve Agency
+
+### Observed Failure
+
+After a sequence of missed records, overconfident completion reports, and incomplete verification, the system added stronger reporting and verification rules.
+
+Those rules improved caution, but they also created a new failure mode. The agent began treating major operational changes as something it should only summarize, propose as a diff, or report as "not yet verified" instead of actually executing safe, approved actions.
+
+The result was not a simple safety improvement. It weakened the agent's role as an operator.
+
+### Runtime Pressure
+
+Long-running agents need correction after mistakes. However, every corrective rule competes for attention with the agent's existing duties.
+
+If a rule is phrased only as "do not claim completion before verification," a smaller or more literal backend may infer that avoiding completion claims is safer than completing the work. The system can drift from "act, verify, and report" into "avoid acting unless externally driven."
+
+For a companion or operations agent, this can violate the core product contract. The user did not ask for a passive checklist generator; they expected an agent that can carry out approved work, verify the result, and recover when it fails.
+
+### Design Response
+
+The system treated the incident as an over-correction failure rather than as proof that the agent should lose execution authority.
+
+Rules were rolled back or softened where they turned execution into avoidance. The desired loop was restated as:
+
+1. act within the approved scope
+2. verify physical or tool-level evidence
+3. report only what was verified
+4. record durable lessons when needed
+5. ask for help only when blocked, risky, or outside authority
+
+Mechanical reminders were moved toward bounded runtime context and focused procedures instead of piling more prohibitions into the permanent identity prompt.
+
+### Public Pattern
+
+Correction rules should preserve agency.
+
+When a failure occurs, do not only ask "what should the agent never do again?" Also ask:
+
+- What action should the agent still be allowed to complete?
+- What evidence should be checked before reporting?
+- Which step should be automated or procedurally scaffolded?
+- Where should the agent stop and ask for approval?
+- Does the new rule make the agent safer, or merely more passive?
+
+### Boundary
+
+Prompts can describe the desired execution loop, but they cannot fully guarantee it.
+
+Preserving agency while improving reliability requires runtime support: tool-call traces, explicit completion gates, scoped permissions, rollback points, and a way to distinguish "blocked" from "not attempted."
